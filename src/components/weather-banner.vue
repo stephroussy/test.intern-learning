@@ -14,7 +14,7 @@ export default {
     name: 'WeatherBanner',
     data() {
         return {
-            currentTemp: null,
+            currentTemp: null
         };
     },
     created() {
@@ -28,12 +28,12 @@ export default {
             const apiKey = 'eab29b6df2f075a12235544ff5dcdd52';
             const units = 'imperial';
             const endpoint = `${url}?zip=${zipCode}&appid=${apiKey}&units=${units}`;
-
+            const self = this
             // make api call
-            const response = axios.get(endpoint);
-
-            // display current temp on page
-            this.currentTemp = response.data.main.temp;
+            axios.get(endpoint).then(function (response) {
+            self.currentTemp = response.data.main.temp;
+  });
+            
         },
     },
 };
